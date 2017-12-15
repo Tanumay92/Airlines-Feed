@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Airlines Feed</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+th {
+    text-align: left;
+    padding: 8px;
+    background-color:green;
+    color:white;
+}
+
+tr:nth-child(even){background-color:whitesmoke;
+                   color:brown;
+                   padding: 20px;
+}
+tr:nth-child(odd){
+  background-color:darksalmon;
+     color:green;
+     padding: 20px;
+}
+  </style>
+</head>
+<body>
+<header style="padding:10px; background-color:#233b49; color:azure; font-style:oblique; font-size:25px;"><b> AIRLINES FEED</b></header>
+<div class="container-fluid">
+   
+  <div class="row" style="background-color:cornsilk">
+    <div class=" col-md-6">
+    <div class="row-md-4" style="margin-right:-40px; margin-left:-15px;">
+                <!-- Begin WeatherLink Fragment -->
+<iframe title="Environment Canada Weather" width="685px" height="194px" style="background-color:red;" src="//weather.gc.ca/wxlink/wxlink.html?cityCode=ab-52&amp;lang=e" allowtransparency="true"></iframe>
+<!-- End WeatherLink Fragment -->
+    </div>
+    <div class="row-md-7" style="margin-left:-13px; margin-top:-10px; margin-right:-27px;">
+    <div style="overflow-x:auto;">
+  <table>
+        <thead>
+      <tr>
+      <th>EVENT NAME</th>
+      <th>ROOM NAME</th>
+      <th>DATE</th>
+      <th>START TIME</th>
+      <th>END TIME</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if (events.length) { %>
+    <% events.forEach(function(rs){ %>
+    <tr>
+        <td><%=rs.event_name%></td>
+        <td><%=rs.room_id%></td>
+        <td><%=rs.date%></td>
+        <td><%=rs.start_time%></td>
+        <td><%=rs.end_time%></td>
+    <% }) %>
+<% } %>
+
+</tbody>
+     </table>
+</div>
+    </div>
+    </div>
+    <div class=" col-md-6" style=" margin-top:3px;">
+    <div class="w3-content w3-section" style="max-width:100%" style=" margin-right:-60px;">
+       <% if (photos.length) { %>
+    <% photos.forEach(function(rs){ %>
+  <img class="mySlides" src="<%=rs.name%>" style="width:100%; height:350px; margin-right:-80px;">
+ <% }) %>
+<% } %>
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 6000); // Change image every 10 seconds
+}
+</script>
+  </div>
+ 
+    </div>
+  </div>
+  <div class="col-md-12" style="background-color:yellow; height:296px;">
+
+</div>
+</body>
+</html>
